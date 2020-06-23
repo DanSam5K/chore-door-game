@@ -94,7 +94,7 @@ const startRound = () => {
 
 const gameOver = (status) => {
  if(status === 'win') {
-     startButton.innerHTML = 'You win! Play again?';
+     startButton.innerHTML = 'Congrats You win! Play again?';
  } else {
    startButton.innerHTML = 'Game over! Play again?';
  }
