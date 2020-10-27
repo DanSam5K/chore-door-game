@@ -1,7 +1,10 @@
+//getiing started by opening door and defining global variables
 let doorImage1 = document.getElementById('door1');
 let doorImage2 = document.getElementById('door2');
 let doorImage3 = document.getElementById('door3');
 let startButton = document.getElementById('start');
+
+//images when door opens
 let botDoorPath = 'https://s3.amazonaws.com/codecademy-content/projects/chore-door/images/robot.svg';
 let beachDoorPath = 'https://s3.amazonaws.com/codecademy-content/projects/chore-door/images/beach.svg';
 let spaceDoorPath = 'https://s3.amazonaws.com/codecademy-content/projects/chore-door/images/space.svg';
@@ -12,14 +15,16 @@ let openDoor2;
 let openDoor3;
 let currentlyPlaying = true;
 
+//check to see if is bot
 const isBot = (door) => {
-  if (door.src === botDoorPath) {
+  if(door.src === botDoorPath) {
     return true;
   } else{
     return false;
   }
 }
 
+//checking cheats to prevent too much clicks
 const isClicked = (door) => {
  if (door.src===closedDoorPath) {
      return false;
@@ -28,6 +33,7 @@ const isClicked = (door) => {
  }
 }
 
+// playdoor function
 const playDoor = (door) => {
     numClosedDoors--;
     if (numClosedDoors === 0) {
@@ -37,6 +43,7 @@ const playDoor = (door) => {
     }
 }
 
+//random chore-door generator function
 const randomChoreDoorGenerator = () => {
     const choreDoor = Math.floor(Math.random()*numClosedDoors);
     if(choreDoor === 0) {
@@ -54,7 +61,7 @@ const randomChoreDoorGenerator = () => {
     }
   }
 
-
+//onclick functions
 doorImage1.onclick = () => {
     if(currentlyPlaying && !isClicked(doorImage1)){
         doorImage1.src = openDoor1;
@@ -81,6 +88,8 @@ startButton.onclick = () => {
   startRound();
  }
 }
+
+//start round reset all variables function
  
 const startRound = () => {
   numClosedDoors = 3;
@@ -91,7 +100,7 @@ const startRound = () => {
   currentlyPlaying = true;
   randomChoreDoorGenerator();
 }
-
+// game over function
 const gameOver = (status) => {
  if(status === 'win') {
      startButton.innerHTML = 'Congrats You win! Play again?';
